@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fruit Prices</title>
+    <style>
+      #price {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      h2 {
+        color: rgb(22, 153, 210);
+      }
+      body {
+        text-align: center;
+        margin-top: 25vh;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Select a Fruit</h2>
+    <select id="fruitDropdown" onchange="showPrice()">
+      <option value="">--Select Fruit--</option>
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+      <option value="mango">Mango</option>
+    </select>
+
+    <div id="price"></div>
+
+    <script>
+      function showPrice() {
+        const fruit = document.getElementById("fruitDropdown").value;
+        const priceDiv = document.getElementById("price");
+        let priceText = "";
+
+        if (fruit === "apple") {
+          priceText = "Apple Price: ₹50.00 each";
+        } else if (fruit === "banana") {
+          priceText = "Banana Price: ₹5.50 each";
+        } else if (fruit === "mango") {
+          priceText = "Mango Price: ₹44.00 each";
+        } else {
+          priceText = "";
+        }
+
+        priceDiv.textContent = priceText;
+      }
+    </script>
+  </body>
+</html>

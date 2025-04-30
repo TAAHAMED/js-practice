@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruit Search</title>
+    <style>
+      #inputArea {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      #fruitList {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+      }
+      .fruitItem {
+        margin: 5px 0;
+        color: rgb(228, 239, 236);
+      }
+      #notFound {
+        color: red;
+        display: none;
+        text-align: center;
+      }
+      h3 {
+        text-align: center;
+        color: rgb(31, 136, 228);
+      }
+      body {
+        background-color: black;
+      }
+      button {
+        color: rgb(0, 0, 0);
+        background-color: rgb(119, 119, 246);
+      }
+    </style>
+  </head>
+  <body>
+    <header><h3>SearchBox</h3></header>
+    <div id="inputArea">
+      <input type="text" id="searchInput" placeholder="Search for a fruit" />
+      <button onclick="searchFruit()">Search</button>
+    </div>
+    <ul id="fruitList">
+      <li class="fruitItem">Apple</li>
+      <li class="fruitItem">Banana</li>
+      <li class="fruitItem">Cherry</li>
+      <li class="fruitItem">Date</li>
+      <li class="fruitItem">Strawberry</li>
+      <li class="fruitItem">Fig</li>
+      <li class="fruitItem">Grape</li>
+      <li class="fruitItem">Honey</li>
+      <li class="fruitItem">Guava</li>
+    </ul>
+    <p id="notFound">Item not found,Please enter the correct value!</p>
+  </body>
+  <script>
+    function searchFruit() {
+      var input = document.getElementById("searchInput").value.toLowerCase();
+      var fruitItems = document.getElementsByClassName("fruitItem");
+      var found = false;
+
+      for (var i = 0; i < fruitItems.length; i++) {
+        var fruit = fruitItems[i].innerText.toLowerCase();
+        if (fruit.includes(input)) {
+          fruitItems[i].style.display = "";
+          found = true;
+        } else {
+          fruitItems[i].style.display = "none";
+        }
+      }
+
+      document.getElementById("notFound").style.display = found
+        ? "none"
+        : "block";
+    }
+  </script>
+</html>
