@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        #inputArea {
+            margin-bottom: 10px;
+        }
+        #taskContainer {
+            margin-top: 10px;
+        }
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .taskItem p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="inputArea">
+        <input type="text" id="task" placeholder="Enter text here">
+        <button onclick="addToTextArea()">Add Task</button>
+    </div>
+    <div id="taskContainer"></div>
+
+    <script>
+        var tasks = [];
+
+        function addToTextArea() {
+            var task = document.getElementById("task").value; // Corrected this line
+            if (task.trim() !== "") {
+                tasks.push(task);
+                var taskItem = document.createElement("div");
+                taskItem.className = "taskItem";
+
+                var taskText = document.createElement("p");
+                taskText.innerHTML = task;
+
+                var editBtn = document.createElement("button");
+                editBtn.innerHTML = "Edit";
+                editBtn.onclick = function() {
+                    editTask(taskText);
+                };
+
+                var removeBtn = document.createElement("button");
+                removeBtn.innerHTML = "Remove";
+                removeBtn.onclick = function() {
+                    removeTask(taskItem);
+                };
+
+                taskItem.appendChild(taskText);
+                taskItem.appendChild(editBtn);
+                taskItem.appendChild(removeBtn);
+
+                document.getElementById("taskContainer").appendChild(taskItem);
+                document.getElementById("task").value = "";
+            }
+        }
+
+        function editTask(taskText) {
+            var newTask = prompt("Edit your task:", taskText.innerHTML);
+            if (newTask !== null && newTask.trim() !== "") {
+                taskText.innerHTML = newTask;
+            }
+        }
+
+        function removeTask(taskItem) {
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>
